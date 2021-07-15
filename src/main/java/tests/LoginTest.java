@@ -22,7 +22,7 @@ public class LoginTest extends BaseTest{
 		loginPage.setPassword(password);
 		
 		LoggedUser logedUser = loginPage.clickSubmitButton();
-		assertEquals(logedUser.readUserName(), "Test User");
+		assertEquals(logedUser.readUserName(), "Test User33");
 		
 		
 	}
