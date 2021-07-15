@@ -31,7 +31,7 @@ public class BaseTest {
 	
 	WebDriver driver;
 	public HomePage homePage;
-	String browser = System.getProperty("browser");
+	String Browser = System.getProperty("Browser");
 
 
 	@Parameters({"url"})
@@ -43,8 +43,29 @@ public class BaseTest {
 		options.addArguments("start-maximized"); 
 		options.addArguments("--headless"); 
 		
-		driver = new ChromeDriver(options);
-		driver.manage().window().maximize();
+		//Firefox options
+		FirefoxBinary firefoxBinary = new FirefoxBinary();
+		firefoxBinary.addCommandLineOptions("--headless");
+		FirefoxOptions firefoxOptions = new FirefoxOptions();
+		firefoxOptions.setBinary(firefoxBinary);
+		
+		if(Browser != "" & Browser !=null) {
+			if(Browser.equalsIgnoreCase("Chrome")) {
+				driver = new ChromeDriver(options);
+				driver.manage().window().maximize();
+			}
+			
+		}
+		else if(Browser.equalsIgnoreCase("firefox")) {
+			driver = new FirefoxDriver(firefoxOptions);
+
+		}
+		else {
+			driver = new ChromeDriver(options);
+			driver.manage().window().maximize();
+			  
+		}
+		
 		  
 		 
 		
